@@ -1,18 +1,20 @@
 # AI-Powered Text Summarizer
 
-A web-based application that uses DeepSeek AI to generate concise summaries of long texts. Built with Python, Gradio, and the DeepSeek API.
+A modern web application that uses DeepSeek R1 to generate concise bullet-point summaries from long text. Built with FastAPI and a clean, responsive user interface.
 
 ## Features
 
-- Simple and intuitive web interface
-- Real-time text summarization
+- Clean and modern user interface
+- Real-time text summarization using DeepSeek R1
 - Bullet-point format summaries
-- Built on DeepSeek's powerful language model
+- Responsive design that works on all devices
+- Shows both summary and original text for easy comparison
 
 ## Prerequisites
 
-- Python 3.x
-- Ollama with DeepSeek model installed locally
+- Python 3.8 or higher
+- Ollama with DeepSeek R1 model installed and running
+- pip (Python package manager)
 
 ## Installation
 
@@ -27,33 +29,31 @@ cd ai-powered-text-summerizer
 pip install -r requirements.txt
 ```
 
-3. Make sure Ollama is running with DeepSeek model
+3. Make sure Ollama is running with DeepSeek R1 model:
+```bash
+ollama run deepseek-r1
+```
 
 ## Usage
 
 1. Start the application:
 ```bash
-python text_summarizer.py
+python app.py
 ```
 
-2. Open your web browser and navigate to `http://localhost:7860`
+2. Open your web browser and navigate to:
+```
+http://localhost:7860
+```
 
-3. Enter your text in the input box and click submit to get a summarized version
+3. Enter your text in the input field and click "Generate Summary" to get a concise bullet-point summary.
 
-## How it Works
+## Project Structure
 
-The application uses:
-- Gradio for the web interface
-- DeepSeek AI model through Ollama for text summarization
-- Requests library for API communication
-
-## API Configuration
-
-The application connects to a local Ollama instance at `http://localhost:11434/api/generate`. Make sure Ollama is running with the DeepSeek model before starting the application.
-
-## Contributing
-
-Feel free to open issues or submit pull requests to improve the application.
+- `app.py`: FastAPI application with route handlers
+- `text_summarizer.py`: Core text summarization logic
+- `templates/`: HTML templates for the web interface
+- `requirements.txt`: Project dependencies
 
 ## License
 

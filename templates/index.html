@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI-Powered Text Summarizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --success-bg: #f0fdf4;
+            --success-border: #86efac;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-section label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .summary-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--success-bg);
+            border: 2px solid var(--success-border);
+            border-radius: 0.75rem;
+        }
+
+        .summary-section h2 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .summary-content {
+            white-space: pre-line;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .original-text {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .original-text h3 {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .original-text p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI-Powered Text Summarizer</h1>
+            <p>Transform long text into concise bullet points using DeepSeek R1</p>
+        </div>
+        
+        <div class="card">
+            <form method="post">
+                <div class="input-section">
+                    <label for="text">Enter your text:</label>
+                    <textarea 
+                        id="text"
+                        name="text" 
+                        placeholder="Paste your article, document, or any text you want to summarize..." 
+                        required>{{ original_text if original_text else "" }}</textarea>
+                </div>
+                <button type="submit">Generate Summary</button>
+            </form>
+
+            {% if summary %}
+            <div class="summary-section">
+                <h2>📝 Summary</h2>
+                <div class="summary-content">
+                    {{ summary }}
+                </div>
+                
+                {% if original_text %}
+                <div class="original-text">
+                    <h3>Original Text</h3>
+                    <p>{{ original_text }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
